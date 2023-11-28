@@ -35,7 +35,7 @@ class Employee:
         gross_pay = self.hours * self.rate
         income_tax = gross_pay * (self.tax_rate / 100)
         net_pay = gross_pay - income_tax
-        return {"gross_pay": gross_pay, "income_tax" : income_tax, "net_pay": net_pay}
+        return {"gross_pay": gross_pay, "income_tax": income_tax, "net_pay": net_pay}
 
     def create_employee_data(self):
         pay = self.calculate_pay()
@@ -43,13 +43,13 @@ class Employee:
             "start_date": self.start_date,
             "end_date": self.end_date,
             "employee_name": self.name,
-            "hours" : self.hours,
-            "rate" : self.rate,
-            "gross_pay" : pay["gross_pay"],
-            "tax_rate" : self.tax_rate,
-            "income_tax" : pay["income_tax"],
+            "hours": self.hours,
+            "rate": self.rate,
+            "gross_pay": pay["gross_pay"],
+            "tax_rate": self.tax_rate,
+            "income_tax": pay["income_tax"],
             "net_pay": pay["net_pay"]
-            }
+        }
 
 def calculate_totals(records):
     totals = {
@@ -75,11 +75,11 @@ def display_employee_data(employee_data):
 
 def display_summary(totals):
     print("\nSummary")
-    print(f"Total Employees: {totals['employees']}")
-    print(f"Total Hours: {totals['hours']}")
-    print(f"Total Gross Pay: {totals['gross_pay']}")
-    print(f"Total Tax: {totals['tax']}")
-    print(f"Total Net Pay: {totals['net_pay']}")
+    for key, value in totals.items():
+        if key == 'tax':
+            print(f"Total Tax: {value}")
+        else:
+            print(f"Total {key.capitalize().replace('_', ' ')}: {value}")
 
 def main():
     records = []
